@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class StudentDetailPage extends StatelessWidget {
   final Map<String, dynamic> student;
 
-  const StudentDetailPage({Key? key, required this.student}) : super(key: key);
+  const StudentDetailPage({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class StudentDetailPage extends StatelessWidget {
         backgroundColor: Colors.blueGrey,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(
@@ -24,6 +24,15 @@ class StudentDetailPage extends StatelessWidget {
                   DataColumn(label: Text('Value')),
                 ],
                 rows: [
+                  //add the responsive design here
+                  // add the student ID in google sheet
+                  // add the student ID in student list
+                  DataRow(
+                    cells: [
+                      DataCell(Text('Student ID')),
+                      DataCell(Text(student['studentId']?.toString() ?? '')),
+                    ],
+                  ),
                   DataRow(
                     cells: [
                       DataCell(Text('Full Name')),

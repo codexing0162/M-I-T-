@@ -10,6 +10,7 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final TextEditingController _studentIdController = TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
   final TextEditingController _postalAddressController =
@@ -70,10 +71,11 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Future<void> _submitToGoogleSheet() async {
     final url = Uri.parse(
-      'https://script.google.com/macros/s/AKfycbwZBigXsfrqFhfQZUdc6Tyo3uCyBLlpQPdu0Ctr1bOfbe4GVWiOAs4uLyhyzF4CCC36/exec', // Replace with your deployment URL
+      'https://script.google.com/macros/s/AKfycbx75cUXW12-R7JJns7ok_7NttXnCvAv2vDyhjWFZIydY2xLgrxvtJgSN6Lnud3RXsl_/exec', // Replace with your deployment URL
     );
 
     final data = {
+      'Student': _studentIdController.text,
       'fullName': _fullNameController.text,
       'dob': _dobController.text,
       'gender': _gender,
@@ -136,6 +138,7 @@ class _RegisterFormState extends State<RegisterForm> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              _buildTextField('Student ID', controller: _studentIdController),
               _buildTextField('Full Name', controller: _fullNameController),
               _buildTextField(
                 'Date of Birth',
